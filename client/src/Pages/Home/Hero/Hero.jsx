@@ -1,10 +1,8 @@
 import React from 'react';
-import hero_img from '/assets/plate.svg';
+import {Canvas} from '@react-three/fiber';
+import {OrbitControls} from '@react-three/drei';
+import HeroBanner from './HeroBanner';
 const Hero = () => {
-  const plate_bg = {
-    background: `url(${hero_img})`,
-    backgroundSize: 'cover',
-  };
   return (
     <div className="pt-14 w-screen h-screen grid grid-cols-1 md:grid-cols-12 place-items-center">
       <div className="col-span-1 md:col-span-5 px-4 md:px-12 h-full w-full relative">
@@ -25,10 +23,26 @@ const Hero = () => {
           </div>
         </div>
       </div>
-      <div
+      {/* Banner */}
+      {/* <div
         className="size-96 hidden md:block col-span-1 md:col-span-6"
         style={plate_bg}
-      />
+      /> */}
+      <div id="canvas" className="w-full">
+        {/* <Canvas>
+          <HeroBanner />
+        </Canvas> */}
+        <Canvas
+          className="text-amber-300"
+          style={{height: '80vh', width: '40vw', marginLeft: '6rem'}}
+        >
+          <ambientLight intensity={0.5} />
+          <pointLight position={[10, 10, 10]} color={0xff0000} />
+          <directionalLight position={[5, 10, 5]} intensity={1} castShadow />
+          <HeroBanner />
+          {/* <OrbitControls /> */}
+        </Canvas>
+      </div>
     </div>
   );
 };
